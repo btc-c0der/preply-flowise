@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="display-4 fw-bold mb-4">Master AI Workflows</h1>
+                <p class="lead mb-5">
+                    Learn to build powerful AI applications with both visual tools like Flowise and code frameworks like LangChain. 
+                    Compare approaches, understand trade-offs, and master the skills you need.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{{ url_for('demos') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-play me-2"></i> Try Interactive Demo
+                    </a>
+                    <a href="{{ url_for('learn') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-graduation-cap me-2"></i> Start Learning
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-project-diagram fa-3x"></i>
+                        </div>
+                        <h4>Visual Workflow Builder</h4>
+                        <p class="text-secondary">Learn Flowise's drag-and-drop interface to build AI workflows without writing code.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="text-success mb-3">
+                            <i class="fab fa-python fa-3x"></i>
+                        </div>
+                        <h4>Code-First Approach</h4>
+                        <p class="text-secondary">Master LangChain and other Python frameworks for maximum flexibility and control.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-balance-scale fa-3x"></i>
+                        </div>
+                        <h4>Compare & Decide</h4>
+                        <p class="text-secondary">Understand when to use visual tools vs. code frameworks for your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Tutorial Section -->
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Featured Tutorial</h2>
+                {% if comparison_tutorial %}
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">
+                            <i class="fas fa-exchange-alt me-2"></i>
+                            {{ comparison_tutorial.title }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">{{ comparison_tutorial.description }}</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge bg-info">{{ comparison_tutorial.level }}</span>
+                            <span class="badge bg-secondary">{{ comparison_tutorial.duration }}</span>
+                        </div>
+                        <a href="{{ url_for('learn') }}" class="btn btn-primary">
+                            <i class="fas fa-arrow-right me-2"></i>Start This Tutorial
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <h3 class="mb-3">All Tutorials</h3>
+                <div class="row g-3">
+                    {% for tutorial in tutorials %}
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ tutorial.title }}</h5>
+                                <p class="card-text text-secondary">{{ tutorial.description }}</p>
+                                <div class="d-flex gap-2 mb-3">
+                                    <span class="badge bg-primary">{{ tutorial.level }}</span>
+                                    <span class="badge bg-secondary">{{ tutorial.duration }}</span>
+                                </div>
+                                <a href="{{ url_for('learn') }}" class="btn btn-outline-primary btn-sm">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="card sticky-top">
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="fas fa-tools me-2"></i>
+                            Popular Tools
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        {% for tool in tools %}
+                        <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">{{ tool.name }}</h6>
+                                <p class="text-secondary small mb-1">{{ tool.description }}</p>
+                                <span class="badge bg-info">{{ tool.type }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <a href="{{ url_for('tools') }}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-chart-bar me-2"></i>Compare All Tools
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

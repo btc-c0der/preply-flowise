@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}Community - Flowise & AI Workflows{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1>Join Our Community</h1>
+        <p class="lead">Connect with fellow AI workflow builders, share knowledge, and grow together</p>
+    </div>
+
+    <!-- Community Stats -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-primary mb-2">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h3 class="text-primary">1,247</h3>
+                    <p class="text-secondary mb-0">Active Members</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-success mb-2">
+                        <i class="fas fa-project-diagram fa-2x"></i>
+                    </div>
+                    <h3 class="text-success">356</h3>
+                    <p class="text-secondary mb-0">Shared Projects</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-warning mb-2">
+                        <i class="fas fa-question-circle fa-2x"></i>
+                    </div>
+                    <h3 class="text-warning">892</h3>
+                    <p class="text-secondary mb-0">Questions Answered</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="text-info mb-2">
+                        <i class="fas fa-graduation-cap fa-2x"></i>
+                    </div>
+                    <h3 class="text-info">124</h3>
+                    <p class="text-secondary mb-0">Tutorials Created</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Forum Section -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>
+                        Latest Discussions
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        <!-- Forum Posts -->
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-primary">How to deploy Flowise to production?</h5>
+                                <small class="text-muted">3 days ago</small>
+                            </div>
+                            <p class="mb-1 text-secondary">Looking for best practices for deploying a Flowise app for a small business. Any advice on hosting and security?</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">By: @ai_enthusiast</small>
+                                <div>
+                                    <span class="badge bg-primary me-2">5 replies</span>
+                                    <span class="badge bg-secondary">Production</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-primary">LangChain vs. Flowise for custom agents</h5>
+                                <small class="text-muted">5 days ago</small>
+                            </div>
+                            <p class="mb-1 text-secondary">My team is debating whether to use LangChain for full control or Flowise for speed. What are the key trade-offs?</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">By: @dev_dave</small>
+                                <div>
+                                    <span class="badge bg-primary me-2">12 replies</span>
+                                    <span class="badge bg-warning">Comparison</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-primary">Showcase: My new RAG-based chatbot</h5>
+                                <small class="text-muted">1 week ago</small>
+                            </div>
+                            <p class="mb-1 text-secondary">Just finished building a chatbot that can answer questions about my personal documents. Check out the demo!</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">By: @rag_master</small>
+                                <div>
+                                    <span class="badge bg-primary me-2">8 replies</span>
+                                    <span class="badge bg-success">Showcase</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Start New Discussion
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Links & Resources -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-link me-2"></i>
+                        Community Platforms
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary mb-3">Join our community on these platforms:</p>
+                    <div class="d-grid gap-2">
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-discord me-2"></i> Join Discord Server
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i> Contribute on GitHub
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-twitter me-2"></i> Follow on Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fas fa-rss me-2"></i> Subscribe to Newsletter
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Help -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-life-ring me-2"></i>
+                        Quick Help
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="text-primary">Getting Started</h6>
+                        <p class="text-secondary small">New to AI workflows? Check out our beginner tutorials.</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="text-success">Code Examples</h6>
+                        <p class="text-secondary small">Browse our collection of working code samples.</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="text-warning">Troubleshooting</h6>
+                        <p class="text-secondary small">Common issues and their solutions.</p>
+                    </div>
+                    <a href="{{ url_for('learn') }}" class="btn btn-primary btn-sm w-100">
+                        <i class="fas fa-book me-2"></i>Browse Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/community.js') }}"></script>
+{% endblock %}

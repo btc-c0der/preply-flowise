@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Learn AI Workflows - Flowise & Python{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1>Learning Center</h1>
+        <p class="lead">Master AI workflow building from visual tools to code frameworks</p>
+    </div>
+
+    <div class="row g-4">
+        {% for tutorial in tutorials %}
+        <div class="col-12">
+            <div class="card">
+                {% if tutorial.type == 'comparison' %}
+                    <!-- Special Layout for Comparison Tutorial -->
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="mb-0">
+                                <i class="fas fa-exchange-alt me-2 text-primary"></i>
+                                {{ tutorial.title }}
+                            </h3>
+                            <div>
+                                <span class="badge bg-primary me-2">{{ tutorial.level }}</span>
+                                <span class="badge bg-secondary">{{ tutorial.duration }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead text-secondary mb-4">{{ tutorial.description }}</p>
+                        
+                        <div class="row g-4">
+                            <!-- Flowise Column -->
+                            <div class="col-lg-6">
+                                <div class="border border-primary rounded p-3 h-100">
+                                    <h4 class="text-primary mb-3">
+                                        <i class="fas fa-project-diagram me-2"></i>
+                                        Flowise: Visual Approach
+                                    </h4>
+                                    <div class="bg-dark rounded p-3">
+                                        {% for step in tutorial.flowise_steps %}
+                                            <div class="mb-3 text-light">{{ step|safe }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Python Column -->
+                            <div class="col-lg-6">
+                                <div class="border border-success rounded p-3 h-100">
+                                    <h4 class="text-success mb-3">
+                                        <i class="fab fa-python me-2"></i>
+                                        {{ tutorial.python_code.title }}
+                                    </h4>
+                                    <p class="text-secondary mb-3">{{ tutorial.python_code.description }}</p>
+                                    <pre class="bg-dark text-light p-3 rounded"><code class="language-python">{{ tutorial.python_code.code }}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Standard Tutorial Layout -->
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">{{ tutorial.title }}</h4>
+                            <div>
+                                <span class="badge 
+                                    {% if tutorial.level == 'Beginner' %}bg-success
+                                    {% elif tutorial.level == 'Intermediate' %}bg-warning
+                                    {% else %}bg-danger
+                                    {% endif %} me-2">{{ tutorial.level }}</span>
+                                <span class="badge bg-secondary">{{ tutorial.duration }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary mb-4">{{ tutorial.description }}</p>
+                        
+                        <h5 class="mb-3">Learning Steps:</h5>
+                        <div class="row">
+                            {% for step in tutorial.steps %}
+                            <div class="col-md-6 mb-2">
+                                <div class="d-flex align-items-start">
+                                    <span class="badge bg-primary me-2 mt-1">{{ loop.index }}</span>
+                                    <span class="text-secondary">{{ step }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="far fa-clock me-1"></i>
+                                Estimated Duration: {{ tutorial.duration }}
+                            </small>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-play me-1"></i>
+                                Start Tutorial
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
