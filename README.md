@@ -46,7 +46,8 @@ flowise-portal/
     ├── base.html          # Master template
     ├── index.html         # Homepage
     ├── demo.html          # Interactive demos
-    ├── learn.html         # Tutorials
+    ├── learn.html         # Tutorials overview
+    ├── tutorial_detail.html # Individual tutorial pages
     ├── tools.html         # Tools comparison
     └── community.html     # Discussion board
 ```
@@ -60,10 +61,26 @@ flowise-portal/
 - Live chat interface for testing
 
 ### Learning System
-- Progressive difficulty levels
-- Interactive step-by-step tutorials
-- Code examples and explanations
-- Progress tracking
+- Progressive difficulty levels (Beginner → Intermediate → Advanced)
+- **4 Complete Interactive Tutorials**:
+  1. Building Your First Chatbot with Flowise
+  2. Document Q&A with Vector Embeddings
+  3. Advanced Agent Workflows
+  4. From Visual Idea to Python Code (Comparison Tutorial)
+- Detailed step-by-step instructions with pro tips
+- Interactive progress tracking and completion status
+- Side-by-side visual vs. code comparisons
+- Code examples with copy-to-clipboard functionality
+- Additional resources and learning materials
+
+### Tutorial Features
+- **Interactive Progress Tracking**: Mark steps as complete and track learning progress
+- **Detailed Step Explanations**: Each step includes context, implementation details, and pro tips
+- **Code Examples**: Production-ready code with error handling and best practices
+- **Visual vs. Code Comparison**: Side-by-side comparison of Flowise visual workflows and Python implementations
+- **Responsive Design**: Works seamlessly on all devices
+- **Copy-to-Clipboard**: Easy copying of code examples
+- **Additional Resources**: Links to documentation, videos, and advanced materials
 
 ### Tool Comparison
 - Feature comparison matrix
@@ -76,6 +93,44 @@ flowise-portal/
 - Project gallery
 - Q&A section
 - Resource sharing
+
+## Tutorial System
+
+### Available Tutorials
+
+1. **Building Your First Chatbot with Flowise** (Beginner - 30 min)
+   - Visual workflow construction
+   - AI model configuration
+   - Memory integration
+   - Deployment strategies
+
+2. **Document Q&A with Vector Embeddings** (Intermediate - 45 min)
+   - Document processing and chunking
+   - Vector database setup
+   - RAG implementation
+   - Performance optimization
+
+3. **Advanced Agent Workflows** (Advanced - 60 min)
+   - Multi-agent architectures
+   - Tool integration
+   - Error handling
+   - Production deployment
+
+4. **From Visual Idea to Python Code** (Intermediate - 1 hour)
+   - Flowise visual workflow creation
+   - Python/LangChain code translation
+   - Side-by-side comparison
+   - Migration strategies
+
+### Tutorial Features
+
+- **Interactive Progress Tracking**: Mark steps as complete and track learning progress
+- **Detailed Step Explanations**: Each step includes context, implementation details, and pro tips
+- **Code Examples**: Production-ready code with error handling and best practices
+- **Visual vs. Code Comparison**: Side-by-side comparison of Flowise visual workflows and Python implementations
+- **Responsive Design**: Works seamlessly on all devices
+- **Copy-to-Clipboard**: Easy copying of code examples
+- **Additional Resources**: Links to documentation, videos, and advanced materials
 
 ## Configuration
 
@@ -152,7 +207,8 @@ The portal can be deployed to:
 
 - `GET /` - Homepage
 - `GET /demos` - Interactive demos
-- `GET /learn` - Tutorials
+- `GET /learn` - Tutorials overview
+- `GET /tutorial/<int:tutorial_id>` - Individual tutorial pages
 - `GET /tools` - Tool comparison
 - `GET /community` - Community features
 - `POST /api/flowise-demo` - Demo API

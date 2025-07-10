@@ -1,0 +1,576 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tutorial.title }} - Tutorial{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Tutorial Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('learn') }}">Learn</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ tutorial.title }}</li>
+                </ol>
+            </nav>
+            
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <h1>{{ tutorial.title }}</h1>
+                    <p class="lead text-secondary">{{ tutorial.description }}</p>
+                </div>
+                <div class="text-end">
+                    <span class="badge 
+                        {% if tutorial.level == 'Beginner' %}bg-success
+                        {% elif tutorial.level == 'Intermediate' %}bg-warning
+                        {% else %}bg-danger
+                        {% endif %} fs-6 mb-2">{{ tutorial.level }}</span>
+                    <br>
+                    <span class="badge bg-secondary fs-6">{{ tutorial.duration }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if tutorial.type == 'comparison' %}
+        <!-- Comparison Tutorial Layout -->
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Interactive Comparison Tutorial:</strong> This tutorial shows you how to build the same AI workflow using both Flowise (visual) and Python (code) approaches.
+                </div>
+            </div>
+            
+            <!-- Flowise Section -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">
+                            <i class="fas fa-project-diagram me-2"></i>
+                            Flowise: Visual Approach
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-4">Follow these steps to build the workflow visually in Flowise:</p>
+                        
+                        <div class="tutorial-steps">
+                            {% for step in tutorial.flowise_steps %}
+                            <div class="step-item mb-4 p-3 border border-primary rounded">
+                                <div class="step-content">
+                                    {{ step|safe }}
+                                </div>
+                                <div class="step-actions mt-3">
+                                    <button class="btn btn-sm btn-outline-primary step-complete" data-step="{{ loop.index }}">
+                                        <i class="fas fa-check me-1"></i>Mark Complete
+                                    </button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="alert alert-success mt-4" style="display: none;" id="flowise-complete">
+                            <i class="fas fa-trophy me-2"></i>
+                            <strong>Congratulations!</strong> You've completed the Flowise visual workflow tutorial.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Python Section -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0">
+                            <i class="fab fa-python me-2"></i>
+                            {{ tutorial.python_code.title }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-4">{{ tutorial.python_code.description }}</p>
+                        
+                        <div class="code-tutorial">
+                            <h5 class="text-success mb-3">Complete Python Implementation:</h5>
+                            <div class="position-relative">
+                                <pre class="bg-dark text-light p-3 rounded"><code class="language-python">{{ tutorial.python_code.code }}</code></pre>
+                                <button class="btn btn-outline-success btn-sm position-absolute top-0 end-0 m-2" onclick="copyCode()">
+                                    <i class="fas fa-copy me-1"></i>Copy Code
+                                </button>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6 class="text-success">Key Concepts Explained:</h6>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="fas fa-arrow-right text-success me-2"></i>
+                                        <strong>Import statements:</strong> Loading required LangChain components
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-arrow-right text-success me-2"></i>
+                                        <strong>Model initialization:</strong> Setting up the ChatOpenAI model
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-arrow-right text-success me-2"></i>
+                                        <strong>Prompt template:</strong> Defining the input structure
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-arrow-right text-success me-2"></i>
+                                        <strong>Chain creation:</strong> Connecting components with the pipe operator
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-success mt-4" style="display: none;" id="python-complete">
+                            <i class="fas fa-trophy me-2"></i>
+                            <strong>Great job!</strong> You've learned the Python/LangChain implementation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tutorial Summary -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            Key Takeaways
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary">🎨 Flowise Advantages:</h6>
+                                <ul class="text-secondary">
+                                    <li><strong>Visual Interface:</strong> Drag-and-drop workflow builder</li>
+                                    <li><strong>No Coding Required:</strong> Build complex AI workflows without programming</li>
+                                    <li><strong>Rapid Prototyping:</strong> Quickly test and iterate on ideas</li>
+                                    <li><strong>Easy Understanding:</strong> Visual flow makes logic clear</li>
+                                    <li><strong>Built-in Components:</strong> Pre-built nodes for common tasks</li>
+                                </ul>
+                                
+                                <h6 class="text-primary mt-4">📊 Best Use Cases:</h6>
+                                <ul class="text-secondary small">
+                                    <li>Business analysts creating AI solutions</li>
+                                    <li>Rapid prototyping and proof of concepts</li>
+                                    <li>Non-technical team members building workflows</li>
+                                    <li>Educational and learning environments</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-success">🐍 Python/LangChain Advantages:</h6>
+                                <ul class="text-secondary">
+                                    <li><strong>Full Control:</strong> Complete programmatic control over logic</li>
+                                    <li><strong>Version Control:</strong> Code can be versioned with Git</li>
+                                    <li><strong>Integration:</strong> Seamless integration with existing applications</li>
+                                    <li><strong>Customization:</strong> Unlimited customization possibilities</li>
+                                    <li><strong>Debugging:</strong> Advanced debugging and testing capabilities</li>
+                                </ul>
+                                
+                                <h6 class="text-success mt-4">🔧 Best Use Cases:</h6>
+                                <ul class="text-secondary small">
+                                    <li>Production applications requiring scalability</li>
+                                    <li>Complex business logic and integrations</li>
+                                    <li>Custom AI solutions with specific requirements</li>
+                                    <li>DevOps and CI/CD pipeline integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <h6 class="text-warning">🚀 When to Use Which Approach:</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="border border-primary rounded p-3">
+                                            <h6 class="text-primary">Choose Flowise When:</h6>
+                                            <ul class="text-secondary small mb-0">
+                                                <li>You need to prototype quickly</li>
+                                                <li>Non-technical team members are involved</li>
+                                                <li>You want to visualize the workflow</li>
+                                                <li>You're learning AI concepts</li>
+                                                <li>You need to demo ideas to stakeholders</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="border border-success rounded p-3">
+                                            <h6 class="text-success">Choose Python/LangChain When:</h6>
+                                            <ul class="text-secondary small mb-0">
+                                                <li>Building production applications</li>
+                                                <li>You need complex custom logic</li>
+                                                <li>Integration with existing systems is required</li>
+                                                <li>You want full control over the implementation</li>
+                                                <li>You need advanced error handling</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <!-- Standard Tutorial Layout -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">Tutorial Steps</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="tutorial-progress mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Progress</span>
+                                <span class="text-muted"><span id="completed-steps">0</span> / {{ tutorial.steps|length }}</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0%" id="progress-bar"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tutorial-steps">
+                            {% for step in tutorial.steps %}
+                            <div class="step-item mb-4 p-3 border rounded" data-step="{{ loop.index }}">
+                                <div class="d-flex align-items-start">
+                                    <div class="step-number me-3">
+                                        <div class="step-circle">{{ loop.index }}</div>
+                                    </div>
+                                    <div class="step-content flex-grow-1">
+                                        <h5 class="step-title">Step {{ loop.index }}</h5>
+                                        <p class="step-description">{{ step }}</p>
+                                        
+                                        {% if tutorial.detailed_steps and tutorial.detailed_steps[loop.index0] %}
+                                            {% set detailed_step = tutorial.detailed_steps[loop.index0] %}
+                                            <div class="step-details mt-3 p-3 bg-light rounded">
+                                                <h6>{{ detailed_step.title }}</h6>
+                                                <p>{{ detailed_step.content }}</p>
+                                                {% if detailed_step.tips %}
+                                                    <div class="mt-3">
+                                                        <h6 class="text-primary">💡 Pro Tips:</h6>
+                                                        <ul class="mb-0">
+                                                            {% for tip in detailed_step.tips %}
+                                                            <li class="text-muted">{{ tip }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            {% if loop.index == 1 %}
+                                            <div class="step-details mt-3 p-3 bg-light rounded">
+                                                <h6>What you'll do:</h6>
+                                                <p class="mb-0">In this step, you'll set up your development environment and install the necessary tools.</p>
+                                            </div>
+                                            {% elif loop.index == 2 %}
+                                            <div class="step-details mt-3 p-3 bg-light rounded">
+                                                <h6>Configuration:</h6>
+                                                <p class="mb-0">Configure your AI model settings and API connections for optimal performance.</p>
+                                            </div>
+                                            {% elif loop.index == 3 %}
+                                            <div class="step-details mt-3 p-3 bg-light rounded">
+                                                <h6>Implementation:</h6>
+                                                <p class="mb-0">Build the core workflow logic and connect all components together.</p>
+                                            </div>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        <div class="step-actions mt-3">
+                                            <button class="btn btn-primary btn-sm step-complete" data-step="{{ loop.index }}">
+                                                <i class="fas fa-check me-1"></i>Mark Complete
+                                            </button>
+                                            {% if loop.index > 1 %}
+                                            <button class="btn btn-outline-secondary btn-sm ms-2" disabled>
+                                                <i class="fas fa-arrow-left me-1"></i>Previous
+                                            </button>
+                                            {% endif %}
+                                            {% if loop.index < tutorial.steps|length %}
+                                            <button class="btn btn-outline-primary btn-sm ms-2 step-next" data-step="{{ loop.index }}" disabled>
+                                                <i class="fas fa-arrow-right me-1"></i>Next
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="alert alert-success mt-4" style="display: none;" id="tutorial-complete">
+                            <i class="fas fa-trophy me-2"></i>
+                            <strong>Tutorial Complete!</strong> You've successfully finished this tutorial. Ready for the next challenge?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tutorial Sidebar -->
+            <div class="col-lg-4">
+                <div class="card sticky-top" style="top: 100px;">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Tutorial Info
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <strong>Difficulty:</strong>
+                            <span class="badge 
+                                {% if tutorial.level == 'Beginner' %}bg-success
+                                {% elif tutorial.level == 'Intermediate' %}bg-warning
+                                {% else %}bg-danger
+                                {% endif %} ms-2">{{ tutorial.level }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Duration:</strong> {{ tutorial.duration }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Steps:</strong> {{ tutorial.steps|length }}
+                        </div>
+                        
+                        <hr>
+                        
+                        <h6>What you'll learn:</h6>
+                        {% if tutorial.id == 1 %}
+                        <ul class="text-secondary small">
+                            <li>Setting up Flowise visual environment</li>
+                            <li>Configuring AI model connections</li>
+                            <li>Building chat workflows with memory</li>
+                            <li>Testing and deploying chatbots</li>
+                        </ul>
+                        {% elif tutorial.id == 2 %}
+                        <ul class="text-secondary small">
+                            <li>Document processing and chunking</li>
+                            <li>Vector embeddings and similarity search</li>
+                            <li>Building RAG (Retrieval Augmented Generation) systems</li>
+                            <li>Performance optimization techniques</li>
+                        </ul>
+                        {% elif tutorial.id == 3 %}
+                        <ul class="text-secondary small">
+                            <li>Advanced agent architectures</li>
+                            <li>Multi-tool integration and reasoning</li>
+                            <li>Error handling and fallback mechanisms</li>
+                            <li>Production deployment strategies</li>
+                        </ul>
+                        {% elif tutorial.id == 4 %}
+                        <ul class="text-secondary small">
+                            <li>Visual workflow design principles</li>
+                            <li>Translating visual to code</li>
+                            <li>LangChain framework fundamentals</li>
+                            <li>Comparing no-code vs. code approaches</li>
+                        </ul>
+                        {% else %}
+                        <ul class="text-secondary small">
+                            <li>Setting up your development environment</li>
+                            <li>Configuring AI model connections</li>
+                            <li>Building and testing workflows</li>
+                            <li>Best practices and troubleshooting</li>
+                        </ul>
+                        {% endif %}
+                        
+                        <hr>
+                        
+                        <h6>Additional Resources:</h6>
+                        {% if tutorial.id == 1 %}
+                        <div class="small text-secondary">
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-book me-2"></i>Flowise Documentation
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-video me-2"></i>Video Tutorial Series
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fab fa-github me-2"></i>Sample Chatbot Templates
+                            </a>
+                        </div>
+                        {% elif tutorial.id == 2 %}
+                        <div class="small text-secondary">
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-book me-2"></i>Vector Database Guide
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-code me-2"></i>RAG Implementation Examples
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-chart-line me-2"></i>Performance Optimization Tips
+                            </a>
+                        </div>
+                        {% elif tutorial.id == 3 %}
+                        <div class="small text-secondary">
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-robot me-2"></i>Agent Design Patterns
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-tools me-2"></i>Tool Integration Guide
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-shield-alt me-2"></i>Error Handling Best Practices
+                            </a>
+                        </div>
+                        {% elif tutorial.id == 4 %}
+                        <div class="small text-secondary">
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fab fa-python me-2"></i>LangChain Documentation
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-project-diagram me-2"></i>Flowise vs Code Comparison
+                            </a>
+                            <a href="#" class="text-decoration-none d-block mb-2">
+                                <i class="fas fa-code-branch me-2"></i>Migration Strategies
+                            </a>
+                        </div>
+                        {% endif %}
+                        
+                        <hr>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('demos') }}" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-play me-1"></i>Try Demo
+                            </a>
+                            <a href="{{ url_for('learn') }}" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-arrow-left me-1"></i>Back to Tutorials
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const stepCompleteButtons = document.querySelectorAll('.step-complete');
+    const stepNextButtons = document.querySelectorAll('.step-next');
+    const progressBar = document.getElementById('progress-bar');
+    const completedStepsSpan = document.getElementById('completed-steps');
+    const tutorialComplete = document.getElementById('tutorial-complete');
+    const flowiseComplete = document.getElementById('flowise-complete');
+    const pythonComplete = document.getElementById('python-complete');
+    
+    let completedSteps = 0;
+    let totalSteps = stepCompleteButtons.length;
+    
+    stepCompleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const stepNumber = parseInt(this.dataset.step);
+            const stepItem = this.closest('.step-item');
+            
+            if (!stepItem.classList.contains('completed')) {
+                // Mark step as completed
+                stepItem.classList.add('completed');
+                this.innerHTML = '<i class="fas fa-check me-1"></i>Completed';
+                this.classList.remove('btn-primary', 'btn-outline-primary');
+                this.classList.add('btn-success');
+                this.disabled = true;
+                
+                // Enable next button if exists
+                const nextButton = stepItem.querySelector('.step-next');
+                if (nextButton) {
+                    nextButton.disabled = false;
+                }
+                
+                // Update progress
+                completedSteps++;
+                updateProgress();
+                
+                // Check if tutorial is complete
+                if (completedSteps === totalSteps) {
+                    if (tutorialComplete) {
+                        tutorialComplete.style.display = 'block';
+                    }
+                    if (flowiseComplete) {
+                        flowiseComplete.style.display = 'block';
+                    }
+                    if (pythonComplete) {
+                        pythonComplete.style.display = 'block';
+                    }
+                }
+            }
+        });
+    });
+    
+    function updateProgress() {
+        const percentage = (completedSteps / totalSteps) * 100;
+        if (progressBar) {
+            progressBar.style.width = percentage + '%';
+        }
+        if (completedStepsSpan) {
+            completedStepsSpan.textContent = completedSteps;
+        }
+    }
+});
+
+function copyCode() {
+    const codeElement = document.querySelector('pre code');
+    const textToCopy = codeElement.textContent;
+    
+    navigator.clipboard.writeText(textToCopy).then(function() {
+        // Show feedback
+        const button = event.target.closest('button');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+        setTimeout(() => {
+            button.innerHTML = originalText;
+        }, 2000);
+    });
+}
+</script>
+
+<style>
+.step-item {
+    transition: all 0.3s ease;
+    border-color: #dee2e6 !important;
+}
+
+.step-item.completed {
+    background-color: var(--bg-card);
+    border-color: var(--accent-green) !important;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+}
+
+.step-item.completed .step-circle {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: white;
+}
+
+.step-details {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+.breadcrumb-item a {
+    color: var(--text-accent);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-blue);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-muted);
+}
+</style>
+{% endblock %}

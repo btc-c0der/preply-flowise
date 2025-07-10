@@ -95,10 +95,10 @@
                                 <i class="far fa-clock me-1"></i>
                                 Estimated Duration: {{ tutorial.duration }}
                             </small>
-                            <button class="btn btn-primary btn-sm">
+                            <a href="{{ url_for('tutorial_detail', tutorial_id=tutorial.id) }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-play me-1"></i>
                                 Start Tutorial
-                            </button>
+                            </a>
                         </div>
                     </div>
                 {% endif %}
