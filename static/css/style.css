@@ -597,26 +597,178 @@ footer a:hover {
     box-shadow: var(--shadow-sm);
 }
 
-/* Responsive Design for Workflow */
+/* Study Guide Specific Styles */
+.study-guide {
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.study-guide .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.study-guide .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-accent);
+}
+
+.study-guide .card-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem 1.25rem;
+}
+
+.study-guide .card-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.study-guide .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.6em;
+}
+
+.study-guide .card-body {
+    padding: 1.25rem;
+}
+
+.study-guide .card-body h6 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.study-guide .card-body p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.study-guide .list-unstyled li {
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.study-guide .card-footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-light);
+    padding: 0.75rem 1.25rem;
+}
+
+.study-guide .btn-outline-primary {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    transition: all var(--transition-fast);
+}
+
+.study-guide .btn-outline-primary:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+}
+
+.study-guide .form-control,
+.study-guide .form-select {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+}
+
+.study-guide .form-control:focus,
+.study-guide .form-select:focus {
+    background: var(--bg-card);
+    border-color: var(--border-accent);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+.study-guide .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.study-guide .input-group-text {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+}
+
+.study-guide .bg-light {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-light);
+}
+
+.study-guide .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Statistics Cards */
+.study-guide .border-primary {
+    border-color: var(--primary-blue) !important;
+}
+
+.study-guide .border-success {
+    border-color: var(--accent-green) !important;
+}
+
+.study-guide .border-warning {
+    border-color: var(--accent-orange) !important;
+}
+
+.study-guide .border-info {
+    border-color: var(--text-accent) !important;
+}
+
+/* Project Cards Animation */
+.project-card {
+    transition: all var(--transition-normal);
+}
+
+.project-card.filtering-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Modal Styling */
+.modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-secondary);
+}
+
+.modal-title {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    color: var(--text-secondary);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-light);
+    background: var(--bg-surface);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .workflow-node {
-        width: 80px;
-        height: 60px;
+    .study-guide .card-title {
+        font-size: 1rem;
     }
     
-    .node-content i {
-        font-size: 1.2rem;
+    .study-guide .badge {
+        font-size: 0.7rem;
     }
     
-    .node-content span {
-        font-size: 0.8rem;
-    }
-    
-    .workflow-arrow {
-        width: 40px;
-    }
-    
-    .arrow-line {
-        width: 30px;
+    .study-guide .card-body {
+        padding: 1rem;
     }
 }

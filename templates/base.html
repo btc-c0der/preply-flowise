@@ -43,6 +43,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'study_guide' %}active{% endif %}" href="{{ url_for('study_guide') }}">
+                            <i class="fas fa-book me-1"></i> Study Guide
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'community' %}active{% endif %}" href="{{ url_for('community') }}">
                             <i class="fas fa-users me-1"></i> Community
                         </a>

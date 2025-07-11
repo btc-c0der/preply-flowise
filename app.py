@@ -1,8 +1,19 @@
 from flask import Flask, render_template, request, jsonify
 from config import Config
+import json
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Load processed project data
+def load_project_data():
+    """Load processed project data from JSON file."""
+    json_path = os.path.join(app.root_path, 'data', 'processed_projects.json')
+    if os.path.exists(json_path):
+        with open(json_path, 'r') as f:
+            return json.load(f)
+    return {'projects': [], 'statistics': {}}
 
 # Sample educational content (replace with DB later)
 TOOL_DATA = [
@@ -333,6 +344,35 @@ def tutorial_detail(tutorial_id):
         return "Tutorial not found", 404
     
     return render_template('tutorial_detail.html', tutorial=tutorial)
+
+@app.route('/study-guide')
+def study_guide():
+    """Study guide page showing processed Excel project data."""
+    try:
+        # Load processed project data
+        project_data = load_project_data()
+        projects = project_data.get('projects', [])
+        stats = project_data.get('statistics', {})
+        
+        # Convert projects to JSON for JavaScript access
+        projects_json = json.dumps(projects)
+        
+        return render_template('study_guide.html', 
+                             projects=projects,
+                             projects_json=projects_json,
+                             project_count=stats.get('project_count', 0),
+                             category_count=stats.get('category_count', 0),
+                             financial_projects=stats.get('financial_projects', 0),
+                             personal_projects=stats.get('personal_projects', 0))
+    except Exception as e:
+        # Fallback in case of errors
+        return render_template('study_guide.html', 
+                             projects=[],
+                             projects_json='[]',
+                             project_count=0,
+                             category_count=0,
+                             financial_projects=0,
+                             personal_projects=0)
 
 # API endpoint for Flowise demo
 @app.route('/api/flowise-demo', methods=['POST'])

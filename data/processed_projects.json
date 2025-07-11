@@ -1,0 +1,445 @@
+{
+  "projects": [
+    {
+      "title": "Super Fund Tracker",
+      "uses": "API call \u2192 parse PDS \u2192 extract fees \u2192 CSV /LangChain + Pandas / APRA DATA EXTRACTION",
+      "core_role": "Information extractor - to keep an up to date database of all active commercial funds in Australia, this could extend to the UK (not mine!)",
+      "notes": "APRA has there own database and free API, and a database with the super funds, basically we want to have an alert that signals when there are changes to the master site, then put all the information in another database. Each fund has to disclose fees but they are not always in the same place and mostly in tables in a pdf,  but not always the pds, sometimes additional information or investment options there are maybe 5 options for the name of the document",
+      "more_notes": "My husband (a software developer) told me to use a Crone job, Extract Download and Host?\nAnd that the search pattern for google is \u00a8pds pdf\u00a8pds is an official term, to create an Array of the variables like name of super funds\nhe said to Parse array with variable and use concatenation \nIf date most current\nConditions ",
+      "category": "Financial Technology",
+      "icon": "fa-chart-line",
+      "badge_color": "primary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Master LangChain framework for LLM applications",
+        "Learn API integration and data extraction"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Python programming fundamentals",
+        "Understanding of REST APIs and HTTP requests",
+        "Familiarity with LangChain framework"
+      ]
+    },
+    {
+      "title": "ESG Report Assistant",
+      "uses": "PDF \u2192 extract sections \u2192 ESG flagging \u2192 CSV / RAG pipeline (LlamaIndex) + ESG policy store + UI",
+      "core_role": "Extractor, classifier - We need to report on ESG for one fund every quarter based on the underlying invested companies",
+      "notes": "I will have a list of the companies invested, there are tons of spreadsheets and some calculations required, a lot of the time the information is missing  which is the fun of greenwashing - the laws are not yet the same as tax disclosures",
+      "more_notes": "Similar to the first project, quarterly updates, and public information sources unless bloomsberg has afforable options, as yfinance does not provide sufficient information",
+      "category": "Financial Technology",
+      "icon": "fa-cog",
+      "badge_color": "primary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Implement PDF processing and text extraction",
+        "Build Retrieval-Augmented Generation systems",
+        "Learn ESG reporting and sustainability metrics"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Financial submission",
+      "uses": "Excel \u2192 Extract sections from various sheets into a master  sheet to submit the fund for approval to the government body",
+      "core_role": "Information extractor",
+      "notes": "This is not as regular its basically compiling information from 3 excel sheets into a sheet per fund there are maybe 10 at a time, but it would be nice not to do it manually",
+      "more_notes": "",
+      "category": "Financial Technology",
+      "icon": "fa-coins",
+      "badge_color": "primary",
+      "difficulty": "Beginner",
+      "learning_points": [
+        "Automate Excel data processing workflows",
+        "Understand financial data compliance requirements"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Excel file manipulation experience"
+      ]
+    },
+    {
+      "title": "Financial Fee Updating Assistant",
+      "uses": "Excel \u2192 Extract sections from various sheets into a master fact sheet needs to be done quarterly ",
+      "core_role": "Information extractor",
+      "notes": "This needs to be done once a year and it is in 3 languages but the templates do not change",
+      "more_notes": "",
+      "category": "Financial Technology",
+      "icon": "fa-coins",
+      "badge_color": "primary",
+      "difficulty": "Advanced",
+      "learning_points": [
+        "Automate Excel data processing workflows",
+        "Understand financial data compliance requirements"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Excel file manipulation experience",
+        "Experience with complex data processing",
+        "Understanding of compliance and regulatory requirements"
+      ]
+    },
+    {
+      "title": "Financial Reviewer Bot",
+      "uses": "Upload doc \u2192 validate against MiFID/ESG rules amongst other criteria",
+      "core_role": "Validator",
+      "notes": "Media needs to be proofread, there are a list of criteria",
+      "more_notes": "When a user gives you a document, post, email, or promotional text, review it carefully and provide structured feedback under the following five categories:\n\n1. **Grammar and clarity**  \n   - Flag typos, awkward phrasing, long or unclear sentences, or vague wording.\n\n2. **Tone review**  \n   - Identify emotionally persuasive, overly optimistic, fear-based, or manipulative language.  \n   - Suggest more neutral, factual wording if needed.\n\n3. **Compliance and risk warnings**  \n   - Highlight:\n     - Unbalanced performance claims\n     - Promises or guarantees (e.g. \u201cguaranteed returns\u201d)\n     - Tax suggestions that may have unintended consequences\n     - Missing disclaimers (e.g. investment risk, eligibility, regulatory notes)\n     - Statements that could be interpreted as financial advice\n     - Anything that may violate financial promotion regulations (FCA, SEC, ASIC, etc.)\n\n4. **GDPR and data protection**  \n   - Look for personal data usage, client references, or phrases like \u201cwe collect your info\u201d  \n   - Flag vague or risky data handling language  \n   - Suggest stronger wording around consent, data purpose, or anonymisation where needed\n\n5. **AI generation check & fact sanity check**  \n   - Point out signs of AI-written content (repetitive, vague, generic tone)  \n   - Flag logical inconsistencies, fake citations, or sweeping unsupported claims",
+      "category": "Financial Technology",
+      "icon": "fa-coins",
+      "badge_color": "success",
+      "difficulty": "Advanced",
+      "learning_points": [
+        "Understand financial data compliance requirements"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Experience with complex data processing",
+        "Understanding of compliance and regulatory requirements"
+      ]
+    },
+    {
+      "title": "Regulatory summmariser, checklist creator and training support",
+      "uses": "Tracks the government website for new laws \u2192 parse PDS / word \u2192 summary key points \u2192 creates a checklist for compliance and links to training",
+      "core_role": "Tracker, Summariser, and link finder",
+      "notes": "This will be for UK; EU, DIFC Zone, and Australa",
+      "more_notes": "In the areas of financial compliance, privacy, data governance, and ESG (There may be more but I cannot think of them at the moment)",
+      "category": "Compliance & Regulation",
+      "icon": "fa-chart-line",
+      "badge_color": "info",
+      "difficulty": "Advanced",
+      "learning_points": [
+        "Navigate regulatory compliance automation"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Experience with complex data processing",
+        "Understanding of compliance and regulatory requirements"
+      ]
+    },
+    {
+      "title": "Financial Article writer",
+      "uses": "Using Flowise \u2192 Generate Ideas \u2192 These are approved \u2192 Write article \u2192 Create heading \u2192 Review to Financial Reviewer Bot \u2192 Review to make it more readable",
+      "core_role": "Writer",
+      "notes": "It would be good if the bot also scanned google trends so that there is an SEO component to rank on key words",
+      "more_notes": "",
+      "category": "Financial Technology",
+      "icon": "fa-coins",
+      "badge_color": "warning",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand financial data compliance requirements"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Data Visualisation",
+      "uses": "Turn data into nice dashboards (I have used python but they are ugly)",
+      "core_role": "Data Analysis",
+      "notes": "to accompany 6",
+      "more_notes": "",
+      "category": "Data Processing",
+      "icon": "fa-chart-bar",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Python programming fundamentals",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "PDF formatter",
+      "uses": "Make the documents look nice maybe I can do this with canva or designrr or artistryAI unless you have a better idea? ",
+      "core_role": "Design",
+      "notes": "to accompany 6",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-file-pdf",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Translator",
+      "uses": "Extracts official documents \u2192 extracts important points \u2192 translates them \u2192 verifies errors ie acronymns, duplications, official words",
+      "core_role": "Translator",
+      "notes": "This would be for GDPR legislation, financial promotion and emails. The bot needs to return the rules per the region and create a checklist for each this can then be used to update the financial reviewer bot",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-globe",
+      "badge_color": "dark",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Gardening Planner",
+      "uses": "Inputs(goals, climate) \u2192 suggests layout, planting guide / LangChain agent + climate data API + vector DB of plants",
+      "core_role": "Recommender",
+      "notes": "Uses the free open metro app to get information, and things like the growing zone, the user enters a series of questions, ie how much maintenance are you happy with, what plants do you like, do you want them to be functional, budget, and the area will inform the growing zone and season to come up with planting and maintentance calendar",
+      "more_notes": "",
+      "category": "Personal Productivity",
+      "icon": "fa-seedling",
+      "badge_color": "danger",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Master LangChain framework for LLM applications",
+        "Learn API integration and data extraction",
+        "Work with vector databases and embeddings"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Understanding of REST APIs and HTTP requests",
+        "Familiarity with LangChain framework",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Batch cooking Menu Generator",
+      "uses": "Chooses meals, balances nutrients, adapts for allergens / GPT + calendar API + image gen + recipe DB",
+      "core_role": "Creative planner ",
+      "notes": "similar to 8, the user gives a budget, then foods they like and cooking style, and easy to make foods are returned with youtube videos, and a shopping list",
+      "more_notes": "",
+      "category": "Personal Productivity",
+      "icon": "fa-utensils",
+      "badge_color": "warning",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Learn API integration and data extraction"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Understanding of REST APIs and HTTP requests",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Language learning assistant",
+      "uses": "GPT + spaced repetition API + audio tools",
+      "core_role": "Extractor, classifier  ",
+      "notes": "Like 8 and 9, the user gives the conversations and reading material they like and get short stories from the free library databases at their level, these should be interesting not AI generated stories even interviews etc",
+      "more_notes": "",
+      "category": "Personal Productivity",
+      "icon": "fa-language",
+      "badge_color": "primary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Learn API integration and data extraction"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Understanding of REST APIs and HTTP requests",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Skills",
+      "uses": "Tools",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-cog",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "LLM-based data extraction",
+      "uses": "GPT-4 + LangChain",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-chart-bar",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Master LangChain framework for LLM applications"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Familiarity with LangChain framework",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "PDF processing",
+      "uses": "pdfplumber, PyMuPDF",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-file-pdf",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Implement PDF processing and text extraction"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Workflow automation",
+      "uses": "Python scripts / Zapier / make",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-cog",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Learn API integration and data extraction"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Python programming fundamentals",
+        "Understanding of REST APIs and HTTP requests",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "RAG logic (basic)",
+      "uses": "LangChain or LlamaIndex / Flowise",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-cog",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Master LangChain framework for LLM applications"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Familiarity with LangChain framework",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "API integration",
+      "uses": "ATO, fund websites",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-cog",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Data cleaning",
+      "uses": "pandas, regex",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-chart-bar",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Python programming fundamentals",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Data Visualisation",
+      "uses": "Unsure maybe PowerBI or databox or looker. I used tableu but did not use it enough to justify the cost",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Data Processing",
+      "icon": "fa-chart-bar",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    },
+    {
+      "title": "Deployment",
+      "uses": "Streamlit or even cron jobs",
+      "core_role": "",
+      "notes": "",
+      "more_notes": "",
+      "category": "Automation & Tools",
+      "icon": "fa-cog",
+      "badge_color": "secondary",
+      "difficulty": "Intermediate",
+      "learning_points": [
+        "Understand problem decomposition and solution design",
+        "Learn to integrate multiple data sources",
+        "Develop automation workflows for repetitive tasks"
+      ],
+      "prerequisites": [
+        "Basic understanding of AI/ML concepts",
+        "Intermediate programming skills"
+      ]
+    }
+  ],
+  "statistics": {
+    "project_count": 22,
+    "category_count": 5,
+    "financial_projects": 5,
+    "personal_projects": 3
+  }
+}
